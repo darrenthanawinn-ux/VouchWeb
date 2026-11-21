@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="VouchWeb - TLS/HTTPS for the Open Agentic Web. Cryptographic handshakes & sandboxed execution for browser agents." />
+    <link rel="alternate" type="application/json" href="/.well-known/agent.json" title="VouchWeb agent manifest" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230b1220'/%3E%3Cpath d='M16 5l9 3v7c0 6-4 10-9 12-5-2-9-6-9-12V8z' fill='none' stroke='%2334d399' stroke-width='2.2'/%3E%3Cpath d='M12 16l3 3 5-6' fill='none' stroke='%2334d399' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+    <title>VouchWeb - TLS for the Open Agentic Web</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Consolas', 'monospace'],
+            },
+          },
+        },
+      }
+    </script>
+    <style>
+      html, body, #root { height: 100%; }
+      body { background: #070b14; color: #e2e8f0; margin: 0; }
+      ::-webkit-scrollbar { width: 8px; height: 8px; }
+      ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 8px; }
+      @keyframes vw-pulse { 0%,100% { opacity: .55 } 50% { opacity: 1 } }
+      .vw-pulse { animation: vw-pulse 1.4s ease-in-out infinite; }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

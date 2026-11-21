@@ -1,0 +1,94 @@
+{
+  "schemaVersion": "1.0",
+  "protocol": "open-agentic-web/1.0",
+  "name": "VouchWeb",
+  "version": "1.0.0",
+  "description": "TLS/HTTPS for the Open Agentic Web - cryptographic handshakes and sandboxed execution for browser agents. Runs entirely in the browser, with no server.",
+  "homepage": "/",
+  "runtime": "/runtime.js",
+  "capabilities": [
+    {
+      "id": "verify_manifest",
+      "method": "verify_manifest",
+      "transport": "postMessage",
+      "description": "Verify an agent.json ECDSA P-256 signature (WebCrypto) and detect tampering or key substitution.",
+      "input": {
+        "manifest": "object"
+      },
+      "output": {
+        "valid": "boolean",
+        "keyId": "string",
+        "reason": "string"
+      }
+    },
+    {
+      "id": "sandbox_inspect",
+      "method": "sandbox_inspect",
+      "transport": "postMessage",
+      "description": "Inspect an untrusted agent payload inside a network-less Blob Web Worker; strip prompt injections and suspicious URLs; validate schema.",
+      "input": {
+        "payload": "object|string",
+        "schema": "object?"
+      },
+      "output": {
+        "verdict": "clean|sanitized|quarantined",
+        "sanitized": "object",
+        "findings": "array"
+      }
+    },
+    {
+      "id": "capability_probe",
+      "method": "capability_probe",
+      "transport": "postMessage",
+      "description": "Dry-run an agent manifest and compute a 0-100 Trust Score from signature, schema, hygiene and capability coherence.",
+      "input": {
+        "manifest": "object",
+        "trustedKeyIds": "string[]?"
+      },
+      "output": {
+        "score": "number",
+        "verdict": "TRUSTED|CAUTION|QUARANTINE|REJECT",
+        "checks": "array"
+      }
+    }
+  ],
+  "endpoints": {
+    "runtime": "/runtime.js",
+    "manifest": "/.well-known/agent.json"
+  },
+  "messaging": {
+    "transport": "window.postMessage",
+    "request": {
+      "vouchweb": "1",
+      "id": "string",
+      "method": "string",
+      "params": "object"
+    },
+    "response": {
+      "vouchweb": "1",
+      "id": "string",
+      "ok": "boolean",
+      "result": "any",
+      "error": "string?"
+    }
+  },
+  "permissions": [
+    "read_public_web"
+  ],
+  "issuedAt": "2026-11-21T04:36:06.585Z",
+  "publicKey": {
+    "alg": "ECDSA-P256-SHA256",
+    "keyId": "e57c8dc9040790f8",
+    "jwk": {
+      "kty": "EC",
+      "crv": "P-256",
+      "x": "5qkWzntcD0z8ipc_kvcjiEnxn2ZuGJzf-DSbYHqeLSU",
+      "y": "75PRMZKULjQGZri4UklpcuyGMYG6YtLD4LjwPMkaLRM"
+    }
+  },
+  "signature": {
+    "alg": "ECDSA-P256-SHA256",
+    "keyId": "e57c8dc9040790f8",
+    "value": "nLdOVz84MZI2dIbS_KYpn5gdGn8xn6pGDqmjInDdH_1H3ue4SsfWXwCJGkeRO-JcbbPu8XoH_qG8kec1l3-cTQ"
+  }
+}
